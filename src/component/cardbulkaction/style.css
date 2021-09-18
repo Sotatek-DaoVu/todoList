@@ -12,6 +12,7 @@
 .btn {
   width: 70px;
   color: white;
+  cursor: pointer;
 }
 .btn-done {
   background-color: blue;
