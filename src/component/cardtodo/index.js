@@ -4,15 +4,15 @@ import "./style.css";
 import FormUpdate from "../formUpdate";
 
 function CardToDo({
-  todoList,
+  item,
   onRemove,
   getItemChecked,
   handleDetail,
   onSubmitUpdate,
 }) {
-  return todoList.map((item, index) => (
+  return (
     <>
-      <div className="card-container" key={index}>
+      <div className="card-container">
         <div>
           <input
             className="check-box"
@@ -36,7 +36,7 @@ function CardToDo({
         ``
       )}
     </>
-  ));
+  );
 }
 
 CardToDo.propTypes = {

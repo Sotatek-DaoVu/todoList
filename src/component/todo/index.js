@@ -13,7 +13,6 @@ function TodoList() {
   const [isCheckedList, setIsCheckedList] = useState([]);
   const [isCheckedFilterList, setIsCheckedFilterList] = useState([]);
   const [filterName, setFilterName] = useState("");
-  const [isFiler, setIsFiler] = useState(false);
   const [filterList, setFilterList] = useState([]);
 
   useEffect(() => {
@@ -29,7 +28,6 @@ function TodoList() {
       (a, b) => new Date(...a.date.split("-")) - new Date(...b.date.split("-"))
     );
     setTodoList(sortedDateArr);
-    // console.log(sortedDateArr);
   };
 
   const addTodo = (todoItem) => {
@@ -54,6 +52,7 @@ function TodoList() {
       (item) => item.id !== itemId
     );
     setFilterList(newMovedAllFilterList);
+    setFilterName("");
   };
 
   const getItemChecked = (id) => {
@@ -86,13 +85,6 @@ function TodoList() {
     checkFilterTrue(filterList);
   }, [filterList]);
 
-  useEffect(() => {
-    if (filterList.length === 0) {
-      setIsFiler(false);
-      setFilterName("");
-    }
-  }, [filterList]);
-
   const checkFilterTrue = (filterList) => {
     let newCheckedList = [...filterList].filter(
       (item) => item.isChecked === true
@@ -110,6 +102,7 @@ function TodoList() {
       (item) => item.isChecked !== true
     );
     setTodoList(newMovedAllList);
+    setFilterName("");
   };
 
   const update = (it) => {
@@ -122,32 +115,20 @@ function TodoList() {
         item.priority = it.priorityUpate;
         item.isShowModal = !item.isShowModal;
       }
-      if (filterName.length > 0) {
-        setFilterName("");
-      }
     });
-
     setTodoList(newTodoListUpdate);
   };
+
   const handleSearch = (e) => {
     setFilterName(e.target.value);
   };
-
   useEffect(() => {
-    handleFilter(filterName.toLowerCase());
-  }, [filterName]);
-
-  const handleFilter = (filterName) => {
-    if (filterName.length > 0) {
-      setIsFiler(true);
-      let newfilterList = [...todoList].filter(
-        (item) => item.title.toLowerCase().indexOf(filterName) >= 0
-      );
-      setFilterList(newfilterList);
-    } else {
-      setIsFiler(false);
-    }
-  };
+    setFilterList(
+      todoList.filter((item) =>
+        item.title.toLowerCase().includes(filterName.toLowerCase())
+      )
+    );
+  }, [filterName, todoList]);
 
   return (
     <div className="container-list">
@@ -158,22 +139,23 @@ function TodoList() {
           <h3 className="title">To Do List</h3>
           <input
             type="text"
-            value={filterName}
             onChange={handleSearch}
+            value={filterName}
             placeholder="Search..."
           />
+          {filterList.map((item, index) => (
+            <CardToDo
+              key={index}
+              item={item}
+              onRemove={onRemove}
+              getItemChecked={getItemChecked}
+              handleDetail={handleDetail}
+              onSubmitUpdate={update}
+            />
+          ))}
 
-          <CardToDo
-            todoList={isFiler ? filterList : todoList}
-            // todoList={todoList}
-            onRemove={onRemove}
-            getItemChecked={getItemChecked}
-            handleDetail={handleDetail}
-            onSubmitUpdate={update}
-          />
           <div className="bulkk">
             {isCheckedList.length > 0 || isCheckedFilterList.length > 0 ? (
-              // {isCheckedList.length > 0 ? (
               <CardBulkAction onRemoveAllChecked={onRemoveAllChecked} />
             ) : (
               ``
