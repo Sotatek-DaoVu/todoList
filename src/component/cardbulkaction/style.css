@@ -1,0 +1,26 @@
+.card-bulk-container {
+  display: flex;
+  border: 1px solid black;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 70px;
+  align-items: center;
+  justify-content: space-between;
+}
+.btn {
+  width: 70px;
+  color: white;
+}
+.btn-done {
+  background-color: blue;
+  margin-left: 350px;
+}
+.btn-remove {
+  background-color: red;
+  margin-right: 20px;
+}
+.bulk {
+  margin-left: 21px;
+}

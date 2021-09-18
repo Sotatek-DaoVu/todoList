@@ -1,0 +1,21 @@
+.container-list {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.todo-list {
+  /* border: 2px solid black; */
+  padding: 50px;
+  width: 550px;
+  position: relative;
+  border-left: 1px solid;
+}
+.container-container {
+  display: flex;
+  border: 1px solid;
+}
+.bulkk {
+  margin-top: 50px;
+}

@@ -1,0 +1,28 @@
+.card-container {
+  display: flex;
+  height: 62px;
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  margin-top: 20px;
+}
+.check-box {
+  margin-right: 15px;
+  height: 19px;
+  width: 19px;
+}
+.card-title {
+  min-width: 340px;
+}
+.btn {
+  width: 70px;
+  color: white;
+}
+.btn-red {
+  background-color: rgb(223, 139, 139);
+}
+.btn-blue {
+  margin-right: 9px;
+  background-color: rgb(110, 110, 214);
+}
