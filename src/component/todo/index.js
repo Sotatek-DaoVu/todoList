@@ -32,6 +32,7 @@ function TodoList() {
 
   const addTodo = (todoItem) => {
     if (!todoItem.title) {
+      alert("title is require!");
       return;
     }
     const newTodoList = [...todoList];
